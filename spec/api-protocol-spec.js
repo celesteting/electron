@@ -321,8 +321,8 @@ describe('protocol module', () => {
       const handler = (request, callback) => callback({ url: redirectURL })
       await registerHttpProtocol(protocolName, handler)
 
-      await contents.loadURL(url)
-      assert.strictEqual(contents.getURL(), url)
+      const r = await ajax(url)
+      assert.strictEqual(r.data, text)
     })
 
     it('can access request headers', (done) => {
